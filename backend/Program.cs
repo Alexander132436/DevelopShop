@@ -7,13 +7,17 @@ builder.Services.AddScoped<DataBaseContext>();
 builder.Services.AddScoped<IProductService,ProductService>();
 
 builder.Configuration.AddJsonFile("appsettings.json");
+
+builder.Services.AddCors();
+
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
-
+app.UseCors(builder => builder.AllowAnyOrigin());
 
 app.MapGet("/products", async (IProductService _productService) =>
 {
