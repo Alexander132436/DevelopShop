@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import classes from './Card.module.css'
 // import foto from '../../Media/Images/apple.webp'
-export default function Card({card}){
-    const [but,setBut] = useState('Нажми меня')
+export default function Card({card,onClick}){
+    const [but,setBut] = useState('Добавить в корзину')
     return(
         <article className={classes.productCard}>
             <figure className={classes.productCard__image}>
@@ -13,7 +13,7 @@ export default function Card({card}){
                 <p className={classes.productCard__description}>{card.Description}</p>
                 <div className={classes.productCard__footer}>
                     <span className={classes.productCard__price}>{card.Price}</span>
-                    <button onClick={()=>setBut(but==='Нажми меня' ? 'Нажал' : 'Нажми меня')} className={classes.productCard__button}>{but}</button>
+                    <button className={classes.productCard__button} onClick={()=>onClick(card)}>{but}</button>
                 </div>
             </div>
         </article>
